@@ -1,0 +1,144 @@
+# This file contains aliases and environmental variables to be sourced
+# before running the General Channel Simulator programs.  They can be
+# sourced from the directory here or edited into your .cshrc file in
+# your home directory, to be sourced when you log in.
+
+# ALIASES AND ENVIRONMENTAL VARIABLES 
+
+# Below are environmental variables used when compiling and linking
+# software after doing any modifications, and for invoking the
+# graphical user interface. SIMLIBS are set for no motif or X11.
+
+        setenv SIMLIBS '-lcmd'
+        setenv MIXEDSIMLIBS '-lmixedcmd'
+        setenv VHFSIMLIBS '-lvhfcmd'
+        setenv AIRSIMLIBS '-laircmd'
+        setenv AIRGRSIMLIBS '-lairgrcmd'
+        setenv FLATSIMLIBS '-lflatcmd'
+        setenv HFLIBS '-lcmd'
+
+# SIMDIR is the path to the channel simulation directory.  HFDIR is defined
+# to be the same as SIMDIR in case it is still used in a couple of the
+# older programs.
+# YOU NEED TO EDIT THESE LINES TO AGREE WITH THE DIRECTORY YOU'VE
+# INSTALLED THE SOFTWARE.
+
+        setenv SIMDIR /elmer/data2/bello/GenChanSim
+        setenv HFDIR /elmer/data2/bello/GenChanSim
+
+# SIM_I and SIM_L are the include and library arguments (-I -L) containing the 
+# paths to header files and libraries needed when compiling most software.
+# YOU NEED TO EDIT THESE LINES TO AGREE WITH WHERE YOU HAVE YOUR LIBRARIES.
+
+        setenv SIM_I '-I${SIMDIR}/misc -I${SIMDIR}/cmdline'
+        setenv SIM_L '-L${SIMDIR}/cmdline '
+        setenv HF_I '-I${HFDIR}/misc -I${HFDIR}/cmdline'
+        setenv HF_L '-L${HFDIR}/cmdline '
+
+# XAPPLERESDIR is the directory containing the resource file for the 'cmdline'
+# interface.  The default resource file is 'Cmdline'.  This file may be copied
+# and customized for specific software programs.  YOU SHOULDN'T NEED
+# THIS LINE FOR THE NO_MOTIF OPTION, SO IT IS COMMENTED OUT.
+
+#       setenv XAPPLRESDIR ${SIMDIR}/xapplres
+
+# CCOMP is the C compiler and flags used when compiling software.  The 
+# GNU compiler gcc is defaulted below.  This may be changed to the ANSII 
+# compiler 'acc'
+# NOTE: if no X11 or MOTIF then define NO_MOTIF (-DNO_MOTIF)
+# YOU SHOULDN'T HAVE TO EDIT THIS LINE.
+
+        setenv CCOMP 'gcc -g -O -W -Wreturn-type -Wunused -DNO_MOTIF'
+#       setenv CCOMP 'acc -O -DNO_MOTIF'
+
+# The environment variables TAPE and DISPLAY are UNIX standards which you may 
+# wish to set for use with the channel simulator, e.g., 
+#
+#    setenv TAPE /dev/rst0
+#    setenv DISPLAY woden:0
+#
+# Below are directory aliases for moving about directories should you want
+# to do further software development.
+
+   alias cdsim cd ${SIMDIR}
+   alias cdhf cd ${SIMDIR}/HF
+   alias cdmob cd ${SIMDIR}/MobileChan
+   alias cdtools cd ${SIMDIR}/Tools
+   alias cdjtc cd ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/JTCmod
+   alias cdmixed cd ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod
+   alias cdvhf cd ${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF
+   alias cdairair cd ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoair
+   alias cdairground cd ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoground
+   alias cdpathloss cd ${SIMDIR}/MobileChan/PathLoss
+   alias cdsat cd ${SIMDIR}/MobileChan/PropChan/SatMobile
+   alias cdignition cd ${SIMDIR}/MobileChan/AddDist/ignition
+
+# Below are software aliases for running software from any directory.
+# YOU SHOULDN'T NEED TO EDIT THESE LINES.
+   alias signal ${SIMDIR}/Tools/signal/signal
+   alias fileconv ${SIMDIR}/Tools/fileconv
+   alias filesum ${SIMDIR}/Tools/filesum
+
+   alias propchan ${SIMDIR}/HF/PropChan/propchan
+   alias atmosphere ${SIMDIR}/HF/AddDist/atmosphere/atmosphere
+   alias atmoscal ${SIMDIR}/HF/AddDist/atmosphere/calibrate/atmoscal
+   alias narrowband ${SIMDIR}/HF/AddDist/narrowband/narrowband
+   alias hfnoise ${SIMDIR}/HF/AddDist/gaussnoise/gaussnoise
+   alias hfc ${SIMDIR}/HF/src/hfc
+
+   alias ignition ${SIMDIR}/MobileChan/AddDist/ignition/ignition
+   alias thermnoise ${SIMDIR}/MobileChan/AddDist/gaussnoise/gaussnoise
+
+   alias whichhf ${SIMDIR}/HF/PropChan/scenarios/whichhf
+   alias dirhf ls ${SIMDIR}/HF/PropChan/scenarios
+   alias cphf ${SIMDIR}/bin/cphf
+   alias mixedchan ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/mixedchan
+   alias mixedmacro ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/scenarios/macro/whichscen
+   alias dirmacro ls ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/scenarios/macro
+   alias cpmacro ${SIMDIR}/bin/cpmacro
+   alias mixedmicro ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/scenarios/micro/whichscen
+   alias dirmicro ls ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/scenarios/micro
+   alias cpmicro ${SIMDIR}/bin/cpmicro
+   alias mixedindoor ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/scenarios/indoor/whichscen
+   alias dirindoor ls ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/scenarios/indoor
+   alias cpindoor ${SIMDIR}/bin/cpindoor
+
+   alias vhfuhfmixedchan ${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF/vhfuhfmixedchan
+   alias mobiletobase ${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF/scenarios/mobiletobase/whichscen
+   alias dirmobiletobase ls ${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF/scenarios/mobiletobase
+   alias cpmobiletobase ${SIMDIR}/bin/cpmobiletobase
+   alias mobiletomobile ${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF/scenarios/mobiletomobile/whichscen
+   alias dirmobiletomobile ls ${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF/scenarios/mobiletomobile
+   alias cpmobiletomobile ${SIMDIR}/bin/cpmobiletomobile
+
+   alias JTCchan ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/JTCmod/JTCchan
+   alias dirJTC ls ${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/JTCmod/scenarios
+   alias cpJTC ${SIMDIR}/bin/cpJTC
+  
+   alias airairchan ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoair/airairchan
+   alias airtoair ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoair/scenarios/whichscen
+   alias dirairtoair ls ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoair/scenarios
+   alias cpairtoair ${SIMDIR}/bin/cpairtoair
+
+   alias airgroundchan ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoground/airgroundchan
+   alias airtoground ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoground/scenarios/whichscen
+   alias dirairtoground ls ${SIMDIR}/MobileChan/PropChan/AirMobile/airtoground/scenarios
+   alias cpairtoground ${SIMDIR}/bin/cpairtoground
+
+   alias flatfade ${SIMDIR}/MobileChan/PropChan/SatMobile/flatfade
+   alias lutz ${SIMDIR}/MobileChan/PropChan/SatMobile/lutz
+   alias lin ${SIMDIR}/MobileChan/PropChan/SatMobile/lin
+   alias dirsat ls ${SIMDIR}/MobileChan/PropChan/SatMobile/scenarios
+   alias cpsat ${SIMDIR}/bin/cpsat
+
+   alias cost231hata ${SIMDIR}/MobileChan/PathLoss/cost231hata
+   alias cost231walike ${SIMDIR}/MobileChan/PathLoss/cost231walike
+   alias hata ${SIMDIR}/MobileChan/PathLoss/hata
+   alias nlosbelrfblk ${SIMDIR}/MobileChan/PathLoss/nlosbelrfblk
+   alias nlosbelrfint ${SIMDIR}/MobileChan/PathLoss/nlosbelrfint
+   alias ploss_jtc ${SIMDIR}/MobileChan/PathLoss/ploss_jtc
+   alias qkarea ${SIMDIR}/MobileChan/PathLoss/qkarea
+   alias snr2loss ${SIMDIR}/MobileChan/PathLoss/snr2loss
+   alias unobdirurbhr ${SIMDIR}/MobileChan/PathLoss/unobdirurbhr
+
+# END GENCHANSIM CHANNEL ALIASES AND ENVIRONMENTAL VARIABLES

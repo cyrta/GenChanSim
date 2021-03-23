@@ -1,0 +1,58 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -w none (int flag) optional 
+#      -wld load (int flag) optional 
+#      -wgen generate (int flag) optional 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -vs Vehicle_Speed (m/s) (float) 
+#      -norm Number_of_Discrete_Paths (int) optional (default = 3) 
+#      -nd Fractional_Dop_Shft_([-1,1]) (float array) 
+#      -nx Rel_Discrete_Path_Gain_(dB) (float array) 
+#      -nb Discrete_Bulk_Delay_(nS) (float array) 
+#      -dx Rel_Scatter_Path_Gain_(dB) (float) 
+#      -db Scatter_Bulk_Delay_(nS) (float) 
+#      -flat flat (int flag) optional 
+#      -gaussian Gaussian (int flag) optional 
+#      -datadopp data (int flag) optional 
+#      -rms RMS Slope of Surface (float) 
+#      -el Satellite Elev. Ang. (deg) (float) 
+#      -dopfile Dop_Pow_Spec_File (file) 
+#      -prob Probability of blocked state (float) 
+#      -disc Avg distance clear state (m) (float) 
+#      -disb Avg distance blocked state (m) (float) 
+#      -mean Lognormal m (dB) (float) 
+#      -std Lognormal sigma (dB) (float) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+${SIMDIR}/MobileChan/PropChan/SatMobile/lutz  \
+ -i         Inputfile.dat \
+ -s         SampRate \
+ -o         Outputfile.dat \
+ -w         \
+ -fc        CarFreq \
+ -vs        VehSpeed \
+ -norm      1 \
+ -nd        DopShft1 \
+ -nx        0 \
+ -nb        0 \
+ -dx        -9.5 \
+ -db        0 \
+ -flat      \
+ -prob      0.60 \
+ -disc      20 \
+ -disb      31 \
+ -mean      -12.2 \
+ -std       2.0 \
+ -Script_File $0 \
+ $*

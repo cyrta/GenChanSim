@@ -1,0 +1,39 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@include file used to append pathname to a file.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@/* header file for pathfile.c */
+/*
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id$
+   $Log$
+
+*/
+#ifndef _PATHFILE_H
+#define _PATHFILE_H
+
+extern char *PathFile(char *file);
+
+#endif
+@

@@ -1,0 +1,24 @@
+This directory contains default scenario mixedchan CmdScript files
+that can be copied to the user's own directory, edited, and run.
+
+     There are 144 script files set up for mixed channel default
+scenarios named microscen1a through microscen16i.  (Currently (Feb 8,
+1996), files ending in the letters a, d, and g all have the same
+exponential tau, files ending in the letters b, e, and h have another
+exponential tau, and files ending in the letters c, f, and i have
+another exponential tau value.  E.g., all types of areas have the same
+exponential tau.) All of these default scenarios have one exponential
+scatter path and up to four discrete paths, including a possible
+direct path.  The user should run the program "whichscen" in order to
+determine which default scenario to use.  "whichscen" queries the user
+on environment, amount of delay spread, channel structure, and
+relative powers of paths and then answers with the filename of the
+appropriate Cmdline script file.  The words Inputfile.dat, SampRate,
+Outputfile.dat, VehSpeed, CarFreq, and DopShft in the script file need
+to be replaced with user supplied values before successful execution
+can take place.  The Scatter Path Sampling Rate is set to 10 MHz, but
+can be changed if desired.  The doppler power spectrum selected for
+these micro channel scenarios is classic instead of flat.
+
+
+

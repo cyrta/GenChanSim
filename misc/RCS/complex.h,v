@@ -1,0 +1,43 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@include file for complex math.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@/* complex number header file
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id$
+   $Log$
+
+ */
+
+#ifndef _COMPLEX_H
+#define _COMPLEX_H
+
+typedef struct FCOMPLEX { float	r, i; } fcomplex;
+typedef struct DCOMPLEX { double r, i; } dcomplex;
+fcomplex Cinit(fcomplex);
+fcomplex Cadd(fcomplex, fcomplex);
+fcomplex Cmul(fcomplex, fcomplex);
+
+#endif
+@

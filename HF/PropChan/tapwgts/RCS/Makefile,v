@@ -1,0 +1,47 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.19.20.47;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@makefile for tap weight generation routines.
+@
+
+
+2.2
+log
+@added copyright notice
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_I} ${HF_L} -I..
+m = ${HFDIR}/misc
+
+all: doppler.o four1.o hfchan.o  iir4.o q1.o qphas.o qsc.o tapwgts.o weight.o
+
+doppler.o: ../propchan.h $(m)/complex.h
+
+hfchan.o: ../propchan.h $(m)/complex.h
+
+iir4.o: ../propchan.h $(m)/complex.h
+
+qphas.o: ../propchan.h $(m)/complex.h
+
+tapwgts.o: ../propchan.h $(m)/complex.h
+
+weight.o: ../propchan.h $(m)/complex.h
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+@

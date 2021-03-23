@@ -1,0 +1,65 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -vs Max Vehicle_Speed (m/s) (float)
+#      -fc Carrier Frequency (MHz) (float) 
+#      -tl Tap_weight_threshold(dB) (float) optional 
+#      -w warmup_filters(no warmup files) (int flag) optional 
+#      -wld load_filter_warmup_files (int flag) optional 
+#      -wgen generate_filter_warmup_files (int flag) optional 
+#      -norm Number_of_Discrete_Paths (int) optional (default = 1) 
+#      -nd Fractional_Dop_Shft_([-1,1]) (float array) 
+#      -nx Rel_Discrete_Path_Gain_(dB) (float array) optional (default = -1.14) 
+#      -nb Discrete_Bulk_Delay_(nS) (float array) optional (default = 0) 
+#      -dist Number_of_Scatter_Paths (int) optional (default = 1) 
+#      -ds Scatter_Path_Sample_Rate (float) 
+#      -dx Rel_Scatter_Path_Gain_(dB) (float array) 
+#      -db Scatter_Bulk_Delay_(nS) (float array) 
+#      -datadopp data (int flag) optional 
+#      -flat flat (int flag) optional 
+#      -classic classic_2 (int flag) optional
+#      -a1 a:_0.25 (int flag) optional      UNCOMMENT ONE OF THESE CHOICES
+#      -a2 a:_0.5 (int flag) optional       BELOW. a IS THE RATIO OF THE 
+#      -a3 a:_0.75 (int flag) optional      MOBILE VEHICLE SPEEDS.
+#      -a4 a:_1.0 (int flag) optional 
+#      -dopfile Dop_Pow_Spec_File (file) 
+#      -datapow data (int flag) optional 
+#      -exppow exp (int flag) optional 
+#      -powfile Del_Pow_Spec_File (file) 
+#      -et Scatter_Exp_Tau(ns) (float array) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF/vhfuhfmixedchan  \
+ -i         Inputfile.dat \
+ -s         SampRate \
+ -o         Outputfile.dat \
+ -vs        MaxVehSpeed \
+ -fc        CarFreq \
+ -w         \
+ -norm      3 \
+ -nd        DopShft1 DopShft2 DopShft3\
+ -nx        -10.512 -17.753 -22.640 \
+ -nb        0 4500 7500 \
+ -dist      1 \
+ -ds        10 \
+ -dx        0 \
+ -db        0 \
+ -classic      \
+# -a1    # Uncomment one of these choices :     a=0.25       \
+# -a2    # for the ratio of vehicle speeds:     a=0.50       \
+# -a3    # If you want a=0, refer to the  :     a=0.75       \
+# -a4    # mobiletobase default scenarios :     a=1.00       \
+ -exppow    \
+ -et        215 \
+ -Script_File $0 \
+ $*

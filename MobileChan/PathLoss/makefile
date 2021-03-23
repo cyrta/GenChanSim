@@ -1,0 +1,46 @@
+#
+# makefile for pathloss programs
+#
+# $Id: makefile,v 1.0 1994/09/29 11:35:06 jjb Exp $
+# $Log: makefile,v $
+# Revision 1.0  1994/09/29  11:35:06  jjb
+# Initial revision
+#
+#
+#
+
+BINDIR = .
+CC = gcc
+
+all: $(BINDIR)/hata $(BINDIR)/cost231hata \
+	$(BINDIR)/cost231walike $(BINDIR)/linkbud $(BINDIR)/unobdirurbhr \
+	$(BINDIR)/ploss_jtc $(BINDIR)/nlosbelrfblk $(BINDIR)/nlosbelrfint \
+	$(BINDIR)/snr2loss
+
+$(BINDIR)/hata: hata.c
+	$(CC) -o $(BINDIR)/hata hata.c -lm
+
+$(BINDIR)/cost231hata: cost231hata.c
+	$(CC) -o $(BINDIR)/cost231hata cost231hata.c -lm
+
+$(BINDIR)/cost231walike: cost231walike.c
+	$(CC) -o $(BINDIR)/cost231walike cost231walike.c -lm
+
+$(BINDIR)/linkbud: linkbud.c
+	$(CC) -o $(BINDIR)/linkbud linkbud.c -lm
+
+$(BINDIR)/unobdirurbhr: unobdirurbhr.c
+	$(CC) -o $(BINDIR)/unobdirurbhr unobdirurbhr.c -lm
+
+$(BINDIR)/ploss_jtc: ploss_jtc.c
+	$(CC) -o $(BINDIR)/ploss_jtc ploss_jtc.c -lm
+
+$(BINDIR)/nlosbelrfblk: nlosbelrfblk.c
+	$(CC) -o $(BINDIR)/nlosbelrfblk nlosbelrfblk.c -lm
+
+$(BINDIR)/nlosbelrfint: nlosbelrfint.c
+	$(CC) -o $(BINDIR)/nlosbelrfint nlosbelrfint.c -lm
+
+$(BINDIR)/snr2loss: snr2loss.c
+	$(CC) -o $(BINDIR)/snr2loss snr2loss.c -lm
+

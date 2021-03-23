@@ -1,0 +1,40 @@
+#
+# Script file for JTC Table 2.5.3.3 Outdoor, Residential, High Antenna, Channel
+# A tapped delay line parameters.
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -dist Number_of_JTC_Paths (int) optional (default = 5) 
+#      -vs Max_Vehicle_Speed (m/s) (float) 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -dx Relative_Path_Gain_(dB) (float array) 
+#      -db Bulk_Delay_(nS) (float array) 
+#      -seed R.N.G._Seed (int) optional 
+#      -w warmup_interpolator (int flag)
+#      -wld load_interp_warmup_files (int flag)
+#      -wgen generator_interp_warmup_files (int flag)
+#      -tl Tap_weight_threshold(dB) (float) optional
+#      -classic
+#      -flat
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/JTCmod/JTCchan \
+ -i         Inputfile.dat \
+ -s         10 \
+ -o         Outputfile.dat \
+ -dist      6 \
+ -vs        VehSpeed \
+ -fc	    CarFreq \
+ -dx        -3.8 0 -6.6 -1.2 -18.4 -23.7 \
+ -db        0 100 500 800 1300 1700 \
+ -w \
+ -classic \
+ -Script_File $0 \
+ $*

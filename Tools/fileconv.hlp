@@ -1,0 +1,59 @@
+	Below is an excerpt from "Wide Band HF Simulation Software
+User's Manual", MTR93B0000122, Richard Coutts
+	For additional information, refer to "Wideband HF Propagation,
+Narrowband Interference, and Atmospheric Noise Models for Link
+Performance Evaluation", Phillip A. Bello, MTR93B0000086.
+
+
+FILE FORMAT CONVERSION
+
+	The binary complex files may be converted into two file
+formats: ASCII and Matlab 3.5 (for matlab 4.0, use 'loadcomplex.m').
+The ASCII format is two columns of floating point number: the left
+column is the real part of imaginary value, and the right column is
+the imaginary part.  This format is convenient for viewing the values
+of individual points with an editor.  The Matlab format is a binary
+file with a small header - the size of the converted file is only a
+dozen or so bytes larger than the original file.
+
+	The point-and-click interface invoked when typing
+
+	% fileconv -win
+
+
+INPUT PARAMETERS
+
+	Below is a description of the input parameters.
+
+	Input File - name of the binary file to be converted.
+
+	Output File - name of the file to be written
+
+	Matlab Format - creates a Matlab file.
+
+	ASCII Format - creates an ASCII file.  Note that Matlab Format
+and ASCII Format are members of a radio box and that one and only one
+member must be pressed.
+
+
+ERRORS
+
+	Below are the run-time errors you may encounter, accompanied
+with an explanation of the cause of the error.  The format of the
+message is simply
+
+	Error from filesum:  error message
+
+	Errors that begin with "Error from Cmdline" are input errors
+trapped by the interface - please refer to the user's manual for more
+information on these types of errors.
+
+Error Messages:
+
+	input file 'filename' not opened - the input file filename
+could not opened by fileconv for reading .  Check that the file exists
+and that you have privileges to it.
+
+	output file 'filename' not opened - the output file filename
+could not opened by fileconv for writing .  This error may be the
+result of you not having privileges in the current directory.

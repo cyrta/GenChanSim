@@ -1,0 +1,4 @@
+#!/bin/csh
+setenv COPYPATH ${SIMDIR}/MobileChan/PropChan/SatMobile/scenarios
+cp ${COPYPATH}/$1 .
+chmod u+w $1

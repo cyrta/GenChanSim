@@ -1,0 +1,58 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@make file for misc. utilities.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_I} ${HF_L} -I.
+l = ${HFDIR}/cmdline
+ofiles = fwritebuffer.o pathfile.o
+
+all: fileconv filesum cgauss48.o complex.o gauss.o lpgauss2.o \
+qromb.o rand.o seed.o warning.o gauss48.o
+
+fileconv: fileconv.o $(ofiles) lib_a
+	$(CC) fileconv.o $(ofiles) ${HFLIBS} -o fileconv
+
+filesum: filesum.o $(ofiles) lib_a
+	$(CC) filesum.o $(ofiles) ${HFLIBS} -o filesum -lm
+
+complex.o: complex.h
+
+fileconv.o: complex.h $(l)/Cmdline.h pathfile.h
+
+filesum.o: complex.h  $(l)/Cmdline.h pathfile.h fwritebuffer.h
+
+lpgauss2.o: complex.h
+
+seed.o: seed.h
+
+fwritebuffer.o: fwritebuffer.h
+
+lib_a:
+	cd $(l); make
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+@

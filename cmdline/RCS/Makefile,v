@@ -1,0 +1,41 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.18.18.32;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@makefile for command argument library
+@
+
+
+2.2
+log
+@Added copyright notice
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_I} ${HF_L} -I. -L.
+
+libcmd.a: cmdline.c Cmdline.h
+	$(CC) -c cmdline.c
+	ar rcv $@@ cmdline.o
+	ranlib libcmd.a
+	rm cmdline.o
+
+democmd: democmd.c libcmd.a
+	$(CC) democmd.c -o $@@ -lcmd -lXm -lX11 -lXt
+
+calc: calc.c libcmd.a
+	$(CC) calc.c -o $@@ -lcmd -lXm -lX11 -lXt -lm
+@

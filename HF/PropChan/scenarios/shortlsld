@@ -1,0 +1,43 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -norm Number_of_Normal_Paths (int) optional (default = 1) 
+#      -nd Doppler_Shift_(Hz) (float array) 
+#      -nx Relative_Path_Gain_(dB) (float array) optional (default = 0) 
+#      -nb Bulk_Delay_(mS) (float array) optional (default = 0) 
+#      -g Delay_Distortion_(uS/MHz) (float array) 
+#      -dist Number_of_Disturbed_Paths (int) optional (default = 0) 
+#      -dd Doppler_Shift_(Hz) (float array) 
+#      -dx Relative_Path_Gain_(dB) (float array) optional (default = 0) 
+#      -db Bulk_Delay_(mS) (float array) optional (default = 0) 
+#      -ds Doppler_Spread_(Hz) (float array) 
+#      -ms Multipath_Spread_(uS) (float array) 
+#      -tc Thin_Phase_C (float) optional (default = 0.25) 
+#      -tt Thin_Phase_Theshold (float) optional (default = 0.05) 
+#      -sf Slow_Fading (int flag) optional 
+#      -t Time_Constant_(S) (float array) 
+#      -f Fade_RMS_Value_(dB) (float array) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+${SIMDIR}/HF/PropChan/propchan  \
+ -i         InputFile \
+ -s         SampleRate \
+ -o         OutputFile \
+ -norm      1 \
+ -nd        2.0 \
+ -nx        0 \
+ -nb        0 \
+ -g         300 \
+ -dist      0 \
+ -Script_File $0 \
+ $*

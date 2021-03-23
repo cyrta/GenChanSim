@@ -1,0 +1,45 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -vs Max_Vehicle_Speed (m/s) (float) 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -norm Number_of_Discrete_Paths (int) optional (default = 0) 
+#      -nd Discrete_Doppler_Angle_(Hz) (float array) 
+#      -nx Relative_Discrete_Path_Gain_(dB) (float array) optional (default = 0) 
+#      -nb Discrete_Bulk_Delay_(mS) (float array) optional (default = 0) 
+#      -dist Number_of_Scatter_Paths (int) optional (default = 1) 
+#      -dx Relative_Scatter_Path_Gain_(dB) (float array) optional (default = 0) 
+#      -db Scatter_Bulk_Delay_(mS) (float array) optional (default = 0) 
+#      -et Scatter_Exp_Tau (ns)
+#      -eth Scatter_Exp_threshold
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+#/golem2/pbello/pfine/can/hf/mobilechan/mobilechan  \
+/wbhf1/jjb/hf/mobilechan/macromobilechan  \
+ -i         Scatin.dat \
+ -s         10.0 \
+ -ds        10.0 \
+ -o         Scatout.dat \
+ -vs        85.3333333 \
+ -fc	    900.0 \
+ -wld \
+ -norm      2 \
+ -nd 60 75.52 \
+ -nx -3 -6 \
+ -nb 4900 6200 \
+ -dist      2 \
+ -dx	0 -1 \
+ -db 900 7000 \
+ -et 400 350 \
+ -Script_File $0 \
+ $*
+

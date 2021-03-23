@@ -1,0 +1,20 @@
+awk ' /Discrete_Doppler_Angle/ {print "#      -nd Fractional_Dop_Shft_([-1,1]) (float array) "
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /DopAng4/ {print " -nd        DopShft1 DopShft2 DopShft3 DopShft4\\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /DopAng3/ {print " -nd        DopShft1 DopShft2 DopShft3\\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /DopAng/ {print " -nd        DopShft1\\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1

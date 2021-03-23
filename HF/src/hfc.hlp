@@ -1,0 +1,67 @@
+
+INTRODUCTION
+
+	The HF Channel software is designed as modules that may be run
+indepently.  'hfc' was created to relieve the user of memorizing the
+name of each module.
+ 
+	The bulk of the simulation is broken down into a sample signal
+generator and six independent software simulations: mobile channel JTC
+model, mobile channel mixed scatter/discrete path model, HF
+propagation channel, atmospheric noise, narrowband interference, and
+Gaussian noise.  Each module creates a binary output file containing a
+complex signal.  The outputs of two or more modules may be combined by
+merely summing the output files and adjusting the gain as desired.  In
+this manner, runs may be archived so that various combinations of gain
+may be applied.  For example, if you wanted to test several different
+levels of background noise with a single sample of narrowband
+interference, you need only run the Gaussian noise and the narrowband
+interference simulations once.  Different noise levels can then be
+simulated by simply summing together the two files with various
+adjusted gains.
+
+	The output of each module is normalized to facilitate summing
+outputs from different simulations.  Specifically, each channel of the
+propagation channel model is normalized such that the average power of
+the output is equal to the average power of the input; the output of
+the atmospheric noise model is normalized such that the average
+amplitude squared of the output is equal to unity; and the output of
+the narrowband interference simulation sets the minimum interference
+power to unity and scales all other amplitudes in dB relative to the
+minimum.
+
+
+'hfc' DESCRIPTION
+
+	'hfc' was created to save the user the keystrokes required to
+invoke a process and to save the user from memorizing the name of each
+module.  For example, hitting the button [Narrowband Interference]
+simply saves the user from typing "narrowband -win" and the UNIX
+prompt.  The actual process being invoked is echoed to the screen.
+
+	HELP is available from each process.  For example, press
+[Narrowband Interference] to invoke the module 'narrowband' and hit
+it's help button for help information.
+
+	Below is a list of each module invoked by it's corresponding button.
+
+	Button                          Process          Arguments
+	-----------                     ----------       ---------
+	[Narrowband Interference]       narrowband       -win
+	[HF Channel]                    propchan         -win
+	[Mobile Chan JTC Model]         JTCchan          -win
+	[Mob. Chan. Scat/Dis Model]	mixedchan	 -win
+	[Atmospheric Noise]             atmosphere       -win
+	[Gaussian Noise]                noise            -win
+	[Test Signal]                   signal           -win
+	[Sum Files]			filesum		 -win
+	[Convert File]			fileconv	 -win
+
+
+REFERENCES
+
+	For additional information on the software, please refer to
+Wideband HF Propagation, Narrowband Interference, and Atmospheric
+Noise Models for Link Performance Evaluation", Phillip A. Bello,
+MTR93B0000086, or "Wide Band HF Simulation Software User's Manual",
+MTR93B0000122, Richard Coutts

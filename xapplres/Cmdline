@@ -1,0 +1,112 @@
+! default resource file for `cmdline'
+
+! default values
+!Cmdline.width:
+!Cmdline.height:
+*background:					#99d4d4
+!*x:								170
+!*height:						30
+!*width:							90
+!*fontList:						*new century schoolbook-bold-r*120*
+*keyboardFocusPolicy:			explicit
+!*XmScrollBar*width:				17
+!*XmScrollBar*height:			17
+
+! column locations.  Each column is a bulletin board.
+*column1.x:						0
+*column1.y:						0
+*column2.x:						200
+*column2.y:						0
+*column3.x:						400
+*column3.y:						0
+*column4.x:						600
+*column4.y:						0
+*column5.x:						800
+*column5.y:						0
+! add any additional columns here
+
+! title attributes
+*title.fontList:				*charter-bold-r*180*
+*title.x:						0
+*title.width:					340
+*title.height:					30
+
+! text window label attributes
+*label.fontList:				*times-bold-i*120*
+*label.x:						10
+*label.width:					160
+*label.height:					30
+! menu button attributes
+*menuButton.fontList:				*times-bold-i*120*
+! text entry window attributes
+*textWindow.fontList:			*clean-medium-r*120*
+*textWindow.columns:			12
+*textWindow.x:				170
+*textWindow.height:					30
+
+! flag (toggle) attributes
+*flag.fontList:					*times-bold-i*120*
+*flag.height:					30
+*flag.columns:					12
+*flag.x:					220
+
+! function button attributes
+!*functionButton:
+*functionButton.fontList:			*new century schoolbook-bold-r*120*
+*functionButton.columns:			9
+*functionButton.x:				170
+*functionButton.width:				30
+*functionButton.height:					30
+
+! file selection box attributes
+*fileList.fontList:			*clean-medium-r*120*
+*fileList.width:				160
+*fileList.height:				100
+*fileList.listSizePolicy:		XmCONSTANT
+*fileList.stringDirection:	XmSTRING_DIRECTION_R_TO_L
+*fileListSW.x:					170
+
+
+! text entry optional button attributes
+*optionalToggle.x:				259
+
+! array index minus-button attributes
+*minusButton.fontList:			*new century schoolbook-bold-r*120*
+*minusButton.x:					282
+*minusButton.width:				20
+*minusButton.height:					30
+
+! array index attributes
+*arrayIndex.fontList:			*clean-medium-r*120*
+*arrayIndex.columns:				2
+*arrayIndex.x:					301
+
+! array index plus-button attributes
+*plusButton.fontList:			*new century schoolbook-bold-r*120*
+*plusButton.x:					330
+*plusButton.width:				20
+*plusButton.height:					30
+
+! text entry box enter button attributes
+*enterButton.fontList:			*new century schoolbook-bold-r*120*
+*enterButton.x:					282
+*enterButton.width:				70
+*enterButton.height:					30
+
+! 'OK' button attributes
+*okButton.fontList:			*new century schoolbook-bold-r*120*
+*okButton.x:					10
+*okButton.width:				100
+*okButton.height:					30
+
+! 'HELP' button attributes
+*helpButton.fontList:			*new century schoolbook-bold-r*120*
+*helpButton.x:					135
+*helpButton.width:				100
+*helpButton.height:					30
+
+! 'CANCEL' button attributes
+*cancelButton.fontList:			*new century schoolbook-bold-r*120*
+*cancelButton.x:				260
+*cancelButton.width:			100
+*cancelButton.height:					30

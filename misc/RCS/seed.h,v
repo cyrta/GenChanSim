@@ -1,0 +1,44 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@include file used to load and save random number generator seed.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@/* random number generator functions header file
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id$
+   $Log$
+
+ */
+
+#ifndef _SEED_H
+#define _SEED_H
+
+#define		SEEDFILE	"/misc/seed.dat"	/* r.n.g. seed file */
+
+/* functions */
+void SaveSeedTable(unsigned long int seed[]);
+extern long GetSeed(void);
+extern void SaveSeed(long seed);
+
+#endif
+@

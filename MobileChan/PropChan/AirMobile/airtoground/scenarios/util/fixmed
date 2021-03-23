@@ -1,0 +1,39 @@
+awk ' /vhoriz Velocities/ {print "#      -vhoriz Velocity (in-plane) (m/s) (float) "
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /vperp Velocities/ {print "#      -vperp Velocity_(perp) (m/s) (float) "
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /hts Aircraft/ {print "#      -hts Aircraft_Height_(m) (float) "
+                      print "#      -gndht Ground_Height_(m) (float) "
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /SIMDIR/ {print "${SIMDIR}/MobileChan/PropChan/AirMobile/airtoground/airgroundchan  \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /vhoriz    168/ {print " -vhoriz    168 \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /vperp     0/ {print " -vperp     0 \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /hts       7620/ {print " -hts       4572 \\"
+                        print " -gndht     15 \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+
+

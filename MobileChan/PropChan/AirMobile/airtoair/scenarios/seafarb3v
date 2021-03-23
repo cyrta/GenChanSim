@@ -1,0 +1,60 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -w none (int flag) optional 
+#      -wld load (int flag) optional 
+#      -wgen generate (int flag) optional 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -vhoriz Velocities (in-plane) (m/s) (float array) 
+#      -vperp Velocities_(perp) (m/s) (float array) 
+#      -hts Aircraft_Heights_(m) (float array) 
+#      -dis Range (m) (float) 
+#      -rms RMS Slope of Surface (float) 
+#      -dp Direct (int flag) optional 
+#      -disp Specular (int flag) optional 
+#      -scatp Scatter (int flag) optional 
+#      -scatrate Scat_Path_Samp_Rate (MHz) (float) optional (default = 10) 
+#      -gd gd_(dB) (float) optional (default = 0) 
+#      -gsp gsp_(dB) (float) optional (default = -20) 
+#      -gsc gsc_(dB) (float) optional (default = 0) 
+#      -othdisp #_Other_Discrete_Paths (int) optional (default = 0) 
+#      -gdist Other_Disc_Path_Gains_(dB) (float array) optional (default = 0) 
+#      -nd Other_Disc_Doppler_Shfts_(Hz) (float array) 
+#      -nb Other_Disc_Path_Delays_(nS) (float array) optional (default = 0) 
+#      -rmsht RMS Surface Height (m) (float) optional (default = 0.22) 
+#      -comprel Compute_Strengths? (int flag) optional 
+#      -diel Dielectric Constant (float) optional (default = 25) 
+#      -surfcon Surface Conduct. (mhos/m) (float) optional (default = 5) 
+#      -polar Polarization (int) optional (default = 0) 
+#      -antGain Rel_Ant_Gain_Prod (float) optional (default = 0.1) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+${SIMDIR}/MobileChan/PropChan/AirMobile/airtoair/airairchan  \
+ -i         Inputfile.dat \
+ -s         SampRate \
+ -o         Outputfile.dat \
+ -w         \
+ -fc        CarFreq \
+ -vhoriz    168 201 \
+ -vperp     0 0 \
+ -hts       7620 7620 \
+ -dis       152400 \
+ -rms       0.25 \
+ -rmsht     0.22 \
+ -comprel   \
+ -diel      25 \
+ -surfcon   5 \
+ -polar     0 \
+ -antGain   0.9 \
+ -Script_File $0 \
+ $*

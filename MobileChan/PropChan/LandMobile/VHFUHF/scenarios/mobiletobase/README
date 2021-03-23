@@ -1,0 +1,21 @@
+     This directory contains default scenario CmdScript files for a
+mobile to base VHF/UHF channel model.  The CmdScripts should be copied
+to the user's own directory, edited, and run.  Note that the routine
+called in these scripts is mixedchan, because only one node of the
+link is mobile; the center frequency should be choosen for the VHF/UHF
+band.
+
+     There are 144 script files set up for mixed channel default
+scenarios named scen1a through scen16i.  These all have one
+exponential scatter path and up to four discrete paths, including a
+possible direct path.  The user should run the program "whichscen" in
+order to determine which default scenario to use.  "whichscen" queries
+the user on the environment, amount of delay spread, channel
+structure, and relative powers of paths and then answers with the
+filename of the appropriate Cmdline script file.  The words
+Inputfile.dat, SampRate, Outputfile.dat, VehSpeed, CarFreq, and
+DopShft in the script file need to be replaced with user supplied
+values before successful execution can take place.  The Scatter Path
+Sampling Rate is set to 10 MHz, but can be changed if desired.
+
+

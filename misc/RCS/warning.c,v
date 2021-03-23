@@ -1,0 +1,48 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@routine to print warning message.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@/*
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id$
+   $Log$
+
+*/
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
+
+static char rcsid[] = "$Id$";
+
+/* warning: print an error message and die */
+void warning(char *fmt, ...) {
+	va_list args;
+
+	va_start(args, fmt);
+	fprintf(stderr, "warning ");
+	vfprintf(stderr, fmt, args);
+	fprintf(stderr, "\n");
+	va_end(args);
+}
+@

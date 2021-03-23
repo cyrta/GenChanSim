@@ -1,0 +1,58 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -w none (int flag) optional 
+#      -wld load (int flag) optional 
+#      -wgen generate (int flag) optional 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -vs Vehicle_Speed (m/s) (float) 
+#      -norm Number_of_Discrete_Paths (int) optional (default = 1) 
+#      -nd Fractional_Dop_Shft_([-1,1]) (float array) 
+#      -nx Rel_Discrete_Path_Gain_(dB) (float array) 
+#      -nb Discrete_Bulk_Delay_(nS) (float array) 
+#      -dx State RMS Scatter Path Gain (dB) (float array) 
+#      -db Scatter_Path_Bulk_Delay_(nS) (float) 
+#      -flat flat (int flag) optional 
+#      -gaussian Gaussian (int flag) optional 
+#      -datadopp data (int flag) optional 
+#      -rms RMS Slope of Surface (float) 
+#      -el Satellite Elev. Ang. (deg) (float) 
+#      -dopfile Dop_Pow_Spec_File (file) 
+#      -prob State Probs. (float array) 
+#      -trans State Transition Probs. (float array) 
+#      -mean State Lognormal m (dB) (float array) 
+#      -std State Lognormal Sigma (dB) (float array) 
+#      -dis State Transition Distance (m) (float) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+${SIMDIR}/MobileChan/PropChan/SatMobile/lin  \
+ -i         Inputfile.dat \
+ -s         SampRate \
+ -o         Outputfile.dat \
+ -w         \
+ -fc        CarFreq \
+ -vs        VehSpeed \
+ -norm      1 \
+ -nd        DopShft1 \
+ -nx        0 \
+ -nb        0 \
+ -dx        -19.38 -12.54 -21.18 \
+ -db        0 \
+ -flat      \
+ -prob      0.7248 0.2543 0.0208 \
+ -trans     0.9776 0.0230 0.00038 0.063388 0.92459 0.01202 0.04 0.12 .84\
+ -mean      -0.3248 -8.676 -31.734 \
+ -std       -19.4204 --18.2728 -39.4123 \
+ -dis       TransDistance\
+ -Script_File $0 \
+ $*

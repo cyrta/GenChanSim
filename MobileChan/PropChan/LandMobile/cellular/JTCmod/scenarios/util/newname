@@ -1,0 +1,5 @@
+awk ' /JTCchan/ {print "${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/JTCmod/JTCchan \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1

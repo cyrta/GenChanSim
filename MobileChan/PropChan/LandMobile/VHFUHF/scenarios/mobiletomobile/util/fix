@@ -1,0 +1,33 @@
+awk ' /classic classic/ {print "#      -classic classic_2 (int flag) optional"
+print "#      -a1 a:_0.25 (int flag) optional      UNCOMMENT ONE OF THESE CHOICES"
+print "#      -a2 a:_0.5 (int flag) optional       BELOW. a IS THE RATIO OF THE "
+print "#      -a3 a:_0.75 (int flag) optional      MOBILE VEHICLE SPEEDS."
+print "#      -a4 a:_1.0 (int flag) optional "
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /Vehicle/ {print "#      -vs Max Vehicle_Speed (m/s) (float)"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /VehSpeed/ {print " -vs        MaxVehSpeed \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /mixedchan/ {print "${SIMDIR}/MobileChan/PropChan/LandMobile/VHFUHF/vhfuhfmixedchan  \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /exppow    / {print "# -a1    # Uncomment one of these choices :     a=0.25       \\"
+print "# -a2    # for the ratio of vehicle speeds:     a=0.50       \\"
+print "# -a3    # If you want a=0, refer to the  :     a=0.75       \\"
+print "# -a4    # mobiletobase default scenarios :     a=1.00       \\"
+print " -exppow    \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1

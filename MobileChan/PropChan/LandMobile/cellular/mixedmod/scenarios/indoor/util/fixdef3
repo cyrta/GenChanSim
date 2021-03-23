@@ -1,0 +1,16 @@
+awk ' /et        40/ {print " -et        300 \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /nb        90/ {print " -nb        150 \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+awk ' /nb        0 90/ {print " -nb        0 150 \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+

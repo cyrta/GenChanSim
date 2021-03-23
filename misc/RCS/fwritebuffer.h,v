@@ -1,0 +1,40 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@include file for writing a buffer.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@/* header file for file writing function
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id$
+   $Log$
+
+ */
+
+#ifndef _FWRITEBUFFER_H
+#define _FWRITEBUFFER_H
+
+extern int FWriteBuffer(char *, int, int, FILE *, int);
+extern void ncpy(char [], char [], int);
+
+#endif
+@

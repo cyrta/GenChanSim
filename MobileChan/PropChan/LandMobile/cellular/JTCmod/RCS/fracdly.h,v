@@ -1,0 +1,45 @@
+head	3.0;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+3.0
+date	94.08.30.18.52.51;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@include file with constants used for fractional delays.
+@
+
+
+3.0
+log
+@new addition to rev 3.0 of software.
+@
+text
+@/*
+  include file for fractional delay filter 
+
+  copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+  $Id$
+  $Log$
+
+*/
+
+#define FRACDLY_FILTER "/mobilechan/fracdly10-12.coef"
+#define FRAC_FILT_SIZE 12
+#define FRAC_INTERP_RATE 10
+#define ORIG_FRAC_FILT_SIZE (FRAC_FILT_SIZE * FRAC_INTERP_RATE)
+
+#define MIN_FRACT_DELAY  0.001
+#define FRAC_FILT_DLY_BIAS 5
+
+void fracDelayFilter(float, float[]);
+void FracTapDelay(int*, int*, fcomplex*,int,TAPWGTS *, float[], 
+		 fcomplex**,fcomplex*);
+@

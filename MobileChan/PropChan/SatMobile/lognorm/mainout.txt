@@ -1,0 +1,23 @@
+
+
+
+
+
+MAIN: sigma and me are 10 and 30.
+CLOGNORM: nsamples is 12.
+CLOGNORM: sigma and me are 0 and 2.96875.
+MAIN: lonodata samples output from clognorm:
+0     1.32605 + i0.471746
+1     1.32605 + i0.471746
+2     1.32605 + i0.471746
+3     1.32605 + i0.471746
+4     1.32605 + i0.471746
+5     1.32605 + i0.471746
+6     1.32605 + i0.471746
+7     1.32605 + i0.471746
+8     1.32605 + i0.471746
+9     1.32605 + i0.471746
+
+
+
+

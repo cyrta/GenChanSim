@@ -1,0 +1,18 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#Usage: signal [-f Sample_Rate_(MHz)(1)] -t Time_(seconds) -o Output_File [-i #Impulse] [-s Pulse] [-g Gaussian] [-w Sine_Wave] [-ones Ones] -l #Pulse_Length_(uS) [-p Period_(mS)] -freq Frequency(kHz)
+# [-win] # '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+/wbhf1/jjb/hf/signal/signal  \
+-f 10.0 \
+-t  0.0262144\
+-o exp10.dat \
+-w \
+-freq 50.0 \
+-Script_File $0 \
+ $*

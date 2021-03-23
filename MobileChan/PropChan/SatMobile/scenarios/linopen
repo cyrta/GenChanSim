@@ -1,0 +1,58 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -w none (int flag) optional 
+#      -wld load (int flag) optional 
+#      -wgen generate (int flag) optional 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -vs Vehicle_Speed (m/s) (float) 
+#      -norm Number_of_Discrete_Paths (int) optional (default = 1) 
+#      -nd Fractional_Dop_Shft_([-1,1]) (float array) 
+#      -nx Rel_Discrete_Path_Gain_(dB) (float array) 
+#      -nb Discrete_Bulk_Delay_(nS) (float array) 
+#      -dx State RMS Scatter Path Gain (dB) (float array) 
+#      -db Scatter_Path_Bulk_Delay_(nS) (float) 
+#      -flat flat (int flag) optional 
+#      -gaussian Gaussian (int flag) optional 
+#      -datadopp data (int flag) optional 
+#      -rms RMS Slope of Surface (float) 
+#      -el Satellite Elev. Ang. (deg) (float) 
+#      -dopfile Dop_Pow_Spec_File (file) 
+#      -prob State Probs. (float array) 
+#      -trans State Transition Probs. (float array) 
+#      -mean State Lognormal m (dB) (float array) 
+#      -std State Lognormal Sigma (dB) (float array) 
+#      -dis State Transition Distance (m) (float) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+/elmer/data2/bello/GenChanSim/MobileChan/PropChan/SatMobile/lin  \
+ -i         Inputfile.dat \
+ -s         0 \
+ -o         Outputfile.dat \
+ -w         \
+ -fc        0 \
+ -vs        0 \
+ -norm      1 \
+ -nd        0 \
+ -nx        0 \
+ -nb        0 \
+ -dx        -24.746 -21.2697 -25.368 \
+ -db        0 \
+ -gaussian  \
+ -prob      0.982 0.009 0.009 \
+ -trans     0.999 0.001 0 0.097 0.71 0.194 0.061 0.121 0.818 \
+ -mean      0.336 -2.17 -30.03 \
+ -std       -21.72 -23.68 -29.68 \
+ -dis       0 \
+ -Script_File $0 \
+ $*

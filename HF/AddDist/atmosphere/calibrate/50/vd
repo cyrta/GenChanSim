@@ -1,0 +1,9 @@
+../atmoscal -t 10.000 -s 1.0 -apd  ../../apd/apd3.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd  ../../apd/apd4.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd  ../../apd/apd5.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd  ../../apd/apd6.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd  ../../apd/apd7.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd  ../../apd/apd8.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd  ../../apd/apd9.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd ../../apd/apd10.dat -f 50.000 
+../atmoscal -t 10.000 -s 1.0 -apd ../../apd/apd11.dat -f 50.000 

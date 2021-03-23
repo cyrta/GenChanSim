@@ -1,0 +1,67 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.19.29.19;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@makefile for HF channel simulator.
+@
+
+
+2.2
+log
+@added copyright notice.
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_I} ${HF_L} -I.
+t = ${HFDIR}/propchan/tapwgts
+m = ${HFDIR}/misc
+l = ${HFDIR}/cmdline
+
+MISCOFILES = $(m)/cgauss48.o $(m)/gauss48.o $(m)/seed.o $(m)/pathfile.o
+
+TAPOFILES = $(t)/hfchan.o $(t)/tapwgts.o $(t)/doppler.o $(t)/iir4.o \
+	$(t)/qphas.o $(t)/weight.o $(t)/four1.o $(t)/qsc.o $(t)/q1.o 
+
+LOCALOFILES = propchan.o buffer.o coeff.o tapdelay.o fade.o
+
+OFILES = $(LOCALOFILES) $(TAPOFILES) $(MISCOFILES)
+
+propchan: $(LOCALOFILES) tap_obj misc_obj lib_a
+	$(CC) $(OFILES) ${HFLIBS} -o $@@ -lm
+
+propchan.o: propchan.h $(l)/Cmdline.h $(m)/complex.h $(m)/seed.h \
+	$(m)/pathfile.h
+
+buffer.o: propchan.h $(m)/complex.h
+
+coeff.o: propchan.h
+
+tapdelay.o: propchan.h $(m)/complex.h
+
+fade.o: propchan.h
+
+tap_obj:
+	cd $(t); make
+
+misc_obj:
+	cd $(m); make
+
+lib_a:
+	cd $(l); make
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+@

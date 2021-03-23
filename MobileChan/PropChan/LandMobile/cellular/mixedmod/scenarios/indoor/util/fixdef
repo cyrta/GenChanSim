@@ -1,0 +1,6 @@
+awk ' /et        40/ {print " -et        300 \\"
+	     next }
+          { print $0 } ' $1 > $1.tmp#
+rm $1
+mv $1.tmp# $1
+

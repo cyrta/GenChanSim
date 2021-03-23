@@ -1,0 +1,159 @@
+head	3.0;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+3.0
+date	94.08.30.18.45.53;	author jjb;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	94.07.25.18.57.02;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@calculates coefficients for the channel.
+@
+
+
+3.0
+log
+@added MACROCELL model.
+@
+text
+@/* calculates some of the coefficients in channel
+ * r.coutts 
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id: cancoeff.c,v 2.2 1994/07/25 18:57:02 jjb Exp jjb $
+   $Log: cancoeff.c,v $
+ * Revision 2.2  1994/07/25  18:57:02  jjb
+ * added copyright notice
+ *
+
+ */
+#include <mobilechan.h>
+#include <math.h>
+
+static char rcsid[] = "$Id: cancoeff.c,v 2.2 1994/07/25 18:57:02 jjb Exp jjb $";
+
+void cancoeff(TAPWGTS *tw) {
+	int		i;		/* index */
+	int totalTaps = 0;
+
+	/* init freq and time window transition lengths */
+	tw->freqWinTransLen = 120.0;
+	tw->timeWinTransLen = 30.0 * tw->sampleRate / ONE_MHZ;
+
+	/* determine the number of taps required */
+	for(i = 0; i < tw->nPaths; i++) {
+		if(tw->mode[i] == DIST) {	/* if disturbed mode... */
+		  if ( tw->model == MACROCELL_MODEL ) {
+/*		         tw->nTaps[i] = tw->scatterSampleRate * tw->expTau[i]
+			   * (-1.0 * log(tw->expThresh[i])) + 1; */
+		    /* set ntaps so that 5 * Tau of exponent is non-zero */
+		    tw->nTaps[i] = tw->scatterSampleRate * tw->expTau[i] * 5 + 1;
+
+
+		  } else {   /* JTC model */
+			/* units = nS*Hz = 1e6*uS/Hz = Seconds/Hz */
+			tw->nTaps[i] =
+				sqrt(3.0) * tw->multiPathSpr[i] * tw->sampleRate * 1.0e-6; 
+		  }
+		} else { 					/* else normal mode (discrete) */
+		        tw->nTaps[i] = 1;
+		}
+		if(tw->nTaps[i]/2 == (float)tw->nTaps[i]/2) tw->nTaps[i]++;
+		totalTaps += tw->nTaps[i];
+	      }
+
+	/* check if too many taps requested */
+	if ( totalTaps > MAXTAPS ) {
+	  fprintf(stderr," too many taps. need %d,but max = %d\n",
+		  totalTaps,MAXTAPS);
+	  for(i=0; i<tw->nPaths; ++i) {
+	    if ( tw->mode[i] == DIST ) {
+	      if ( tw->model == MACROCELL_MODEL )
+		fprintf(stderr,"path# %d, scatter, no. of taps=%d\n",
+			i,tw->nTaps[i]);
+	      else
+		fprintf(stderr,"path# %d, JTC, no. of taps=%d\n",
+			i,tw->nTaps[i]);
+	    } else
+	      fprintf(stderr,"path# %d, discrete, no. of taps=%d\n",
+		      i,tw->nTaps[i]);
+	  }
+	  exit(1);
+	}
+
+	/* calc snap shot rate for ea path */
+	for(i = 0; i < tw->nPaths; i++) {
+		if(tw->mode[i] == DIST) {	
+					/* For mobile comm, snapshot rate is based only on
+					   Doppler shift. IIR16 is sampled at 4X, then the signal
+					   goes through a 16X interpolator */
+			tw->snapshot[i] = 4.0 * 16.0 * tw->dplShift[i];
+
+/*			tw->snapshot[i] = 4.0 * 16.0 * tw->dplShift[i] *
+				tw->sampleRate / ONE_MHZ;		*/
+		} else {					
+	/* ??		tw->snapshot[i] = 250.0 * tw->dplShift[i]; */
+		  tw->snapshot[i] = 50.0 * tw->dplShift[i];
+		}
+	}
+}
+@
+
+
+2.2
+log
+@added copyright notice
+@
+text
+@d6 5
+a10 2
+   $Id$
+   $Log$
+d16 1
+a16 1
+static char rcsid[] = "$Id$";
+d20 1
+d29 8
+d40 3
+a42 10
+		} else { 					/* else normal mode */
+			/* number of taps increases with the square of sample rate */
+			tw->nTaps[i] = (1.2 * tw->sampleRate * 1e-6 * tw->groupDelay[i] + 
+				100.0) * tw->sampleRate * 1e-6;
+			if (tw->nTaps[i]>NPTS) {
+				printf("Warning from propchan: group delay for path %d is too "
+					"large.  Shrunk from %d taps to %d taps.\n", i+1, 
+					tw->nTaps[i], NPTS);
+				tw->nTaps[i] = NPTS;
+			}
+d45 20
+d69 1
+a76 9
+	}
+}
+
+/* Here's what it used to be before the mobile comm mods on 2/23/94 (can):
+	for(i = 0; i < tw->nPaths; i++) {
+		if(tw->mode[i] == DIST) {	
+			tw->snapshot[i] = 50.0 * sqrt((tw->dplSpread[i] * 
+				tw->dplSpread[i]) +  2 * tw->dplShift[i] * tw->dplShift[i]) *
+				tw->sampleRate / ONE_MHZ;
+d78 2
+a79 2
+			tw->snapshot[i] = 50.0 * tw->dplShift[i] *
+				tw->sampleRate / ONE_MHZ;
+d82 1
+a82 1
+*/
+@

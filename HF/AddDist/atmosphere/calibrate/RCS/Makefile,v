@@ -1,0 +1,47 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.18.11.46;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@makefile for atmospheric interference simulator calibration code.
+@
+
+
+2.2
+log
+@added Copyright notices
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_L} ${HF_I}
+m = ${HFDIR}/misc
+l = ${HFDIR}/cmdline
+
+OFILES = $(m)/seed.o
+
+atmoscal: atmoscal.o misc_obj lib_a
+	$(CC) atmoscal.o $(OFILES) ${HFLIBS} -o $@@ -lm
+
+atmoscal.o: $(l)/Cmdline.h
+
+misc_obj:
+	cd $(m); make
+
+lib_a:
+	cd $(l); make
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+@

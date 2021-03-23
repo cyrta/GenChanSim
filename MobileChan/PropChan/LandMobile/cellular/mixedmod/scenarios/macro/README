@@ -1,0 +1,25 @@
+This directory contains default scenario mixedchan CmdScript files
+that can be copied to the user's own directory, edited, and run.
+
+     There are 9 script files set up for mixed channel models obtained
+from path profiles in Cox and Leck references named CoxLeck1 through
+CoxLeck9.  These all have one exponential scatter path and up to four
+discrete paths.  The words Inputfile.dat, SampRate, Outputfile.dat,
+VehSpeed, CarFreq, and DopShft need to be replaced with user supplied
+values before successful execution can take place.  The Scatter Path
+Sampling Rate is set to 10 MHz, but can be changed if desired.
+
+     There are 144 additional script files set up for mixed channel
+default scenarios named scen1a through scen16i.  These all have one
+exponential scatter path and up to four discrete paths, including a
+possible direct path.  The user should run the program "whichscen" in
+order to determine which default scenario to use.  "whichscen" queries
+the user on environment, amount of delay spread, channel structure, and
+relative powers of paths and then answers with the filename of the
+appropriate Cmdline script file.  The words Inputfile.dat, SampRate,
+Outputfile.dat, VehSpeed, CarFreq, and DopShft in the script file need
+to be replaced with user supplied values before successful execution
+can take place.  The Scatter Path Sampling Rate is set to 10 MHz, but
+can be changed if desired.
+
+

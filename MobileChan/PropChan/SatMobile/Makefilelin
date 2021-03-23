@@ -1,0 +1,70 @@
+#
+# $Id: Makefile,v LL0.0 1996/07/08 cmk Exp $
+# $Log: Makefile,v $
+# Lin Channel and Markov Model States
+#
+
+CC = ${CCOMP} ${SIM_I} ${SIM_L} -I.
+t = ${SIMDIR}/MobileChan/PropChan/SatMobile/tapwgts
+m = ${SIMDIR}/misc
+l = ${SIMDIR}/cmdline
+
+MACRO_MODEL = 2
+
+MISCOFILES =$(m)/cgauss48.o $(m)/gauss48.o \
+	$(m)/seed.o $(m)/pathfile.o
+
+TAPOFILES = $(t)/chfchan.o $(t)/ctapwgtslin.o $(t)/doppler.o $(t)/iir32.o \
+	$(t)/qphas.o $(t)/weight.o $(t)/four1.o $(t)/qsc.o $(t)/q1.o \
+	$(t)/expweight.o $(t)/dataweight.o 
+
+
+MACROLOCALOFILES = lin.o buffer.o cancoeff.o tapdelay.o fade.o \
+	fracdelay.o fractapdelay.o lognorm.o initlinstate.o linstate.o \
+        stateduration.o
+
+MACROOFILES =  $(MACROLOCALOFILES) $(TAPOFILES) $(MISCOFILES)
+
+all: lin
+
+lin: $(MACROLOCALOFILES) libflat_a tap_obj misc_obj
+	$(CC) $(MACROOFILES) ${FLATSIMLIBS} -o $@ -lm
+
+buffer.o: flatfade.h $(m)/complex.h
+
+cancoeff.o: flatfade.h
+
+lin.o: lin.c flatfade.h $(l)/Cmdline.h $(m)/complex.h $(m)/seed.h \
+	$(m)/pathfile.h fracdly.h
+	$(CC) -c $(CFLAGS) -DMODEL=${MACRO_MODEL} lin.c -o lin.o
+
+tapdelay.o: flatfade.h $(m)/complex.h
+
+fractapdelay.o: fractapdelay.c flatfade.h fracdly.h $(m)/complex.h 
+
+lonofractapdelay.o: lonofractapdelay.c flatfade.h fracdly.h $(m)/complex.h 
+
+fracdelay.o: fracdelay.c flatfade.h fracdly.h $(m)/complex.h
+
+fade.o: flatfade.h
+
+lognorm.o: $(m)/complex.h $(m)/seed.h 
+
+initlinstate.o: flatfade.h
+
+linstate.o: flatfade.h
+
+stateduration.o: flatfade.h
+
+tap_obj:
+	cd $(t); make
+
+misc_obj:
+	cd $(m); make
+
+libflat_a:
+	cd $(l); make libflatcmd.a
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+

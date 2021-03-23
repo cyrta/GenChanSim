@@ -1,0 +1,75 @@
+	Below is an excerpt from "Wide Band HF Simulation Software
+User's Manual", MTR93B0000122, Richard Coutts
+	For additional information, refer to "Wideband HF Propagation,
+Narrowband Interference, and Atmospheric Noise Models for Link
+Performance Evaluation", Phillip A. Bello, MTR93B0000086.
+
+*****************************
+The following changes have been made by the MIT Lincoln Laboratory:
+
+Put in carriage returns so that the help files are readable and fixed
+a few comments regarding the output signal description, 12/26/95 cmk.
+
+*****************************
+
+TEST SIGNAL
+
+     'signal' generates a periodic train of pulses or impulses for the
+propagation channel simulator.  The output is a binary file containing
+floating-point complex number pairs.  An impulse is defined here as a
+single value of 1.0 + i * 1.0 followed by complex zeros for the rest
+of the file.  A pulse is defined as consecutive values of 1.0 + i *
+1.0 for "pulse length" microseconds followed by complex zeros for the
+rest of the file.  If an impulse or pulse period is selected, then an
+impulse period consists of one impulse followed by one or more complex
+zeros, and pulse period is defined as a series of impulses followed by
+one or more complex zeros.  The complex signal generated is simply one
+or more identical periods.
+     The Gaussian signal is a set of complex Gaussian random variables.
+     The Sine Wave signal is a set of complex inphase and quadrature
+samples (real part cos and imaginary part sin) with specified frequency (kHz).
+     The Ones (I/Q=1) signal is a constant signal with amplitude 1.0 + i * 1.0.
+
+     The point-and-click interface is invoked when typing
+                                 signal -win
+at the unix prompt.
+
+INPUT PARAMETERS
+
+     The inputs are defined below.  
+
+     Sample Rate (MHz) - number of million samples in one second of output.
+
+     Time (seconds) - total length of the output, in seconds.
+
+     Output File - name of the binary file created.  The binary
+file contains (Sample Rate)x(Time) floating-point complex pairs.
+
+     Impulse - defines the output as being a train of one or more impulses.
+
+     Pulse - defines the output as being a train of one or more pulses.
+
+     Pulse Length (uS) - length of each pulse in microseconds.
+
+     Period (uS) - length of each period in microseconds.
+
+
+ERRORS
+
+     Below are the run-time errors you may encounter, accompanied with
+an explanation of the cause of the error.  The format of the message
+is simply
+
+     Error from signal:  error message
+
+     Errors that begin with "Error from Cmdline" are input errors
+trapped by the interface - please refer to ther user's manual for more
+information on these types of errors.
+
+Error Messages:
+
+     output file 'filename' not opened - the module signal could not
+open the output file filename for writing.  This error may be the
+result of insufficient user privileges in the current directory.
+
+

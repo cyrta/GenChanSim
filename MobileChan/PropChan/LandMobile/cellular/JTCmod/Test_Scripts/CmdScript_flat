@@ -1,0 +1,36 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -vs Vehicle_Speed (m/s)
+#      -fc Carrier Frequency (MHz)
+#      -flat flat_power_spectrum
+#      -jakes jakes_power_spectrum
+#      -dist Number_of_JTC_Paths (int)
+#      -dx Relative_Path_Gain_(dB) (float array)
+#      -db Bulk_Delay_(nS) (float array)
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+#/golem2/pbello/pfine/can/hf/mobilechan/mobilechan  \
+/wbhf1/jjb/hf/mobilechan/mobilechan  \
+ -i         ChInp1M.dat \
+ -s         0.016384 \
+ -o         ChOut1M2.dat \
+ -vs        85.3333333333 \
+ -fc	    900.0 \
+ -flat \
+ -w \
+ -dist      1 \
+ -dx        0 \
+ -db        0 \
+ -Script_File $0 \
+ $*
+

@@ -1,0 +1,57 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@complex math routines.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@/*
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id$
+   $Log$
+
+*/
+#include <math.h>
+#include "complex.h"
+
+static char rcsid[] = "$Id$";
+
+fcomplex Cadd(fcomplex a, fcomplex b) {
+	fcomplex	c;
+	c.r = a.r+b.r;
+	c.i = a.i+b.i;
+	return(c);
+}
+
+fcomplex Cinit(fcomplex a) {
+	fcomplex c;
+	c.r = a.r;
+	c.i = a.i;
+	return(c);
+}
+
+fcomplex Cmul(fcomplex a, fcomplex b) {
+	fcomplex c;
+	c.r = a.r*b.r-a.i*b.i;
+	c.i = a.i*b.r+a.r*b.i;
+	return(c);
+}
+@

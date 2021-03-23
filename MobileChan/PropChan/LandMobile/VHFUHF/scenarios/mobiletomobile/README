@@ -1,0 +1,21 @@
+     This directory contains CmdScript files for a mobile to mobile
+VHF/UHF channel model.  The CmdScripts should be copied to the user's
+own directory, edited, and run.  The routine called in these scripts
+is vhfuhfmixedchan.
+
+     There are 144 script files set up for the VHF/UHF mixed channel
+default scenarios named microscen1a through microscen16i.  These all
+have one exponential scatter path and up to four discrete paths,
+including a possible direct path.  The user should run the program
+"whichscen" in order to determine which default scenario to use.
+"whichscen" queries the user on the environment, amount of delay
+spread, channel structure, and relative powers of paths and then
+answers with the filename of the appropriate Cmdline script file.  The
+words Inputfile.dat, SampRate, Outputfile.dat, MaxVehSpeed, CarFreq,
+and DopShft in the script file need to be replaced with user supplied
+values before successful execution can take place.  Also, one of the
+four choices for "a," the vehicle speed ratio, must be chosen by
+deleting the comment symbol at the front of the desired line.  The Scatter
+Path Sampling Rate is set to 10 MHz, but can be changed if desired.
+
+

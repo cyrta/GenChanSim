@@ -1,0 +1,105 @@
+! default resourse file for cmdline programs
+
+! default values
+*background:					#99d4d4
+!*foreground:					black
+!*topShadowColor:				#d2eaea
+
+! set focus policy for tab group
+*keyboardFocusPolicy:			explicit
+
+! column locations.  Each column is a bulletin board.
+*column1.x:						0
+*column1.y:						0
+*column2.x:						200
+*column2.y:						0
+*column3.x:						400
+*column3.y:						0
+*column4.x:						600
+*column4.y:						0
+*column5.x:						800
+*column5.y:						0
+! add any additional columns here
+
+! title location and size
+*title.fontList:				*charter-bold-r*180*
+*title.x:						30
+*title.width:					380
+*title.height:					30
+
+! text entry label location and size
+*label.fontList:				*times-bold-i*120*
+*label.x:						10
+*label.width:					210
+*label.height:					30
+
+! text entry window (and toggle) loaction and number of characters
+*textWindow.fontList:			*clean-medium-r*120*
+*textWindow.columns:			12
+*textWindow.x:					220
+*textWindow.height:				30
+
+! text entry window (and toggle) loaction and number of characters
+*flag.fontList:					*times-bold-i*120*
+*flag.columns:					12
+*flag.x:						220
+*flag.height:					30
+
+! text entry window (and toggle) loaction and number of characters
+*functionButton.fontList:		*new century schoolbook-bold-r*120*
+*functionButton.columns:		9
+*functionButton.x:				220
+*functionButton.height:			30
+*functionButton.width:			90
+
+! file selection box
+*fileList.fontList:				*clean-medium-r*120*
+*fileList.height:				100
+*fileList.width:				180
+*fileList.listSizePolicy:		XmCONSTANT
+*fileList.stringDirection:		XmSTRING_DIRECTION_R_TO_L
+*fileListSW.x:					220
+
+! text entry optional button location
+*optionalToggle.x:				334
+
+! array index minus-button location and size
+*minusButton.fontList:			*new century schoolbook-bold-r*120*
+*minusButton.x:					332
+*minusButton.width:				20
+*minusButton.height:			30
+
+! array index location and number of characters
+*arrayIndex.fontList:			*clean-medium-r*120*
+*arrayIndex.columns:			2
+*arrayIndex.x:					351
+
+! array index plus-button location and size
+*plusButton.fontList:			*new century schoolbook-bold-r*120*
+*plusButton.x:					384
+*plusButton.width:				20
+*plusButton.height:				30
+
+! text entry box enter button location and size
+*enterButton.fontList:			*new century schoolbook-bold-r*120*
+*enterButton.x:					332
+*enterButton.width:				70
+*enterButton.height:			30
+
+! 'OK' button location and size
+*okButton.fontList:				*new century schoolbook-bold-r*120*
+*okButton.x:					10
+*okButton.width:				100
+*okButton.height:				30
+
+! 'HELP' button location and size
+*helpButton.fontList:			*new century schoolbook-bold-r*120*
+*helpButton.x:					135
+*helpButton.width:				100
+*helpButton.height:				30
+
+! 'CANCEL' button location and size
+*cancelButton.fontList:			*new century schoolbook-bold-r*120*
+*cancelButton.x:				260
+*cancelButton.width:			100
+*cancelButton.height:			30

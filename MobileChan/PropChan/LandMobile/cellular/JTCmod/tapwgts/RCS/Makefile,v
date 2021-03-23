@@ -1,0 +1,74 @@
+head	3.0;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+3.0
+date	94.08.30.18.41.11;	author jjb;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	94.07.25.18.47.02;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@makefile for mobile channel tap weight generation.
+@
+
+
+3.0
+log
+@added expweight to list of files to compile.
+@
+text
+@#
+# $Id: Makefile,v 2.2 1994/07/25 18:47:02 jjb Exp jjb $
+# $Log: Makefile,v $
+# Revision 2.2  1994/07/25  18:47:02  jjb
+# added copyright notice
+#
+#
+CC = ${CCOMP} ${HF_I} ${HF_L} -I..
+m = ${HFDIR}/misc
+
+all: chfchan.o ctapwgts.o doppler.o iir32.o qphas.o weight.o four1.o qsc.o q1.o expweight.o
+
+chfchan.o: ../nb.h ../ifde.h ../mobilechan.h $(m)/complex.h
+
+ctapwgts.o: ../mobilechan.h $(m)/complex.h
+
+doppler.o: ../mobilechan.h $(m)/complex.h
+
+iir32.o: ../mobilechan.h $(m)/complex.h
+
+qphas.o: ../mobilechan.h $(m)/complex.h
+
+weight.o: ../mobilechan.h $(m)/complex.h
+
+expweight.o: ../mobilechan.h
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+@
+
+
+2.2
+log
+@added copyright notice
+@
+text
+@d2 4
+a5 2
+# $Id$
+# $Log$
+d7 1
+d11 1
+a11 1
+all: chfchan.o ctapwgts.o doppler.o iir32.o qphas.o weight.o four1.o qsc.o q1.o
+d24 2
+@

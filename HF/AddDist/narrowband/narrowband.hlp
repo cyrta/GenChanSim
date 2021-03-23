@@ -1,0 +1,151 @@
+	Below is an excerpt from "Wide Band HF Simulation Software
+User's Manual", MTR93B0000122, Richard Coutts
+	For additional information, refer to "Wideband HF Propagation,
+Narrowband Interference, and Atmospheric Noise Models for Link
+Performance Evaluation", Phillip A. Bello, MTR93B0000086.
+
+
+NARROWBAND INTERFERENCE
+	
+	The narrowband interference simulation is performed by the
+module narrowband.  Each run of narrowband creates a history file
+(.hst) that contains the statistics of each interferer.  An interferer
+file may in turn be used as input to narrowband to repeat simulations,
+or the file may be altered to create a specific scenario.  Below is a
+column description of the file.
+
+	Tstart - start of the interferer in seconds.
+
+	amp(dB) - power of the interferer in dB.
+
+	duration - duration of the interferer in seconds.
+
+	freq - normalized frequency of the interferer: 0.0 corresponds
+to a DC, 1.0 to the sampling rate.
+
+	phase(rad) - phase of the interferer in radians.
+
+	DS(Hz) - rms Doppler spread of the interferer in hertz.
+
+	BW(Hz) - rms bandwidth of the interferer in hertz.
+
+	The output of each simulation module is normalized so that it
+may be summed with other outputs.  narrowband normalizes by setting
+the minimum interference power to unity and scaling all other
+amplitudes in decibels relative to the minimum.
+
+	The point-and-click interface invoked when typing
+
+	% narrowband -win
+
+
+INPUT PARAMETERS
+
+	Below is a brief description of the input parameters
+
+	Interferer file - specifies an ASCII file as input containing
+interferer statistics.
+
+	Simulation - generates random interferers as defined by the
+run parameters.  Interferer file and Simulation are both comprise a
+radio-box - one of the buttons must be pressed.
+
+	Test File - ASCII file containing interferer statistics.  A
+file name may be entered only when Interferer File is pressed.
+
+	Time (Seconds) - duration of the run in seconds.
+
+	Sample Rate (MHz) - number of million samples in one second of output data.
+
+	Dynamic Range (dB) - ratio of the maximum interferer strength
+to the minimum interfere strength, in decibels, where the minimum
+strength is normalized to unity.
+
+	Average Number of Interferers - average number of interferers
+co-existing at any given time.
+
+	Interferers per Second - average number of interferers
+arriving per second.  Note that the average number of interferers and
+the number of interferers per second define the average interferer
+duration.  Specifically,
+
+	Average Interferer Duration = Average Number of Interferers /
+the Number of Interferers per Second
+
+	Max RMS Doppler Spread (Hz) - maximum rms Doppler spread in
+hertz.  A value of zero results in the interferer being non-fading.
+Zero rms Doppler spread and zero rms bandwidth result in a tone for an
+interferer.  See Max Bandwidth below for a discussion on the
+attainable Doppler Spreads.
+
+	Max RMS Bandwidth (Hz) - maximum rms bandwidth in hertz.  A
+value of 0.0 yields a tone transmitted interferer.  Each rms bandwidth
+is chosen by generating a uniform random number from 0.0 to the
+maximum rms bandwidth, and then rounding off to the nearest attainable
+value.  Attainable rms bandwidths - and Doppler spreads - are outlined
+in the user's manual.
+
+	Pareto Exponent - exponent parameter in the truncated Pareto
+distribution used to model interferer strength.
+
+	R. N. G. Seed - random number generator seed.  This is an optional value.  If no value is entered, a new seed is chosen for each run.  Identical outputs result should the same seed be entered for two runs.
+
+	Output File ID (no '.') - name of the output files, sans the
+suffix.  One or two output files are created: the ASCII interferer
+history file (.hst) that contains a record of the interferers
+generated, and the optional sample file (.dat).
+
+	Create Sample File - flag for generating a complex sample
+file.  When enable, narrowband generates a data file with the name
+specified in by Output File ID with the suffix .dat appended to it.
+	
+
+ERRORS
+
+	Below are the run-time errors you may encounter, accompanied
+with an explanation of the cause of the error.  The format of the
+message is simply
+
+	Error from narrowband:  error message
+
+	Errors that begin with "Error from Cmdline" are input errors
+trapped by the interface - please refer to the user's manual for more
+information on these types of errors.
+
+Error Messages:
+
+	output file 'filename' not opened - the output file filename
+could not open for writing by narrowband .  This error may be the
+result of insufficient user privileges in the current directory.
+
+	output statistics file 'filename' not opened - the output
+statistics file filename containing the stroke statistics could not
+opened for writing by narrowband .  This error may be the result of
+insufficient user privileges in the current directory.
+
+	input statistics file 'filename' not opened - the input
+statistics file filename containing the stroke statistics could not
+open for reading by narrowband.  Check that the file exists and that
+you have privileges to read it.
+
+	Doppler spread or bandwidth too large.  Current filter in file
+'filename' defined as having passband of p(hz) @ f(Hz) - the requested
+Doppler spread and/or bandwidth are too large for the filter specified
+by filename.  The largest supported Doppler spread and bandwidth at f
+Hz is p.  To achieve larger values, a new filter must be designed and
+installed into the software.
+
+	not enough memory for run.  Tried to allocate for n samples -
+the module was unable to allocate the required buffer memory for the
+run.  Try closing some sessions or running on a machine with more
+memory.
+
+	must 'setenv HFDIR appropriately' - the environmental variable HFDIR
+could not be found by narrowband.  For more detail and for
+instructions on how to set HFDIR automatically, see "Software
+Installation" of the user's manual.
+
+	filter file 'filename' not opened - the filter file filename
+containing the filter coefficients could not opened for writing by
+narrowband.  This error may be the result of insufficient user
+privileges to the directory narrowband.

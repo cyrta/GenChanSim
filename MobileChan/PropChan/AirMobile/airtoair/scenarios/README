@@ -1,0 +1,21 @@
+
+     This directory contains default scenario airairchan CmdScript files
+that can be copied to the user's own directory, edited, and run.
+
+     There are 108 script files set up for air-to-air channel over sea
+default scenarios named seanear1av through seafar3fh.  There are 27
+script files set up for air-to-air channel over land scenarios named
+landnear1 through landfar9.  The user should run the program
+"whichscen" in order to determine which default scenario to use.
+"whichscen" queries the user on aircraft geometry and velocity
+configuration, overland versus oversea, land roughness, sea state,
+wind speed, antenna power gain, and transmitted signal polarization.
+Then, the program answers with the filename of the appropriate Cmdline
+script file.  
+
+     The words Inputfile.dat, SampRate, Outputfile.dat, and
+CarFreq in the script file need to be replaced with user supplied
+values before successful execution can take place.  The Scatter Path
+Sampling Rate is set to 10 MHz, but can be changed if desired.
+
+

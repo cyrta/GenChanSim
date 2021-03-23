@@ -1,0 +1,136 @@
+head	3.0;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+3.0
+date	94.08.30.19.11.12;	author jjb;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	94.07.25.18.57.02;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@makefile for mobile channel simulator.
+..
+@
+
+
+3.0
+log
+@added fracdelay.c fractapdelay.c and JTC and MACROCELL model
+versions of executables.
+@
+text
+@#
+# $Id: Makefile,v 2.2 1994/07/25 18:57:02 jjb Exp jjb $
+# $Log: Makefile,v $
+# Revision 2.2  1994/07/25  18:57:02  jjb
+# added copyright notice
+#
+#
+CC = ${CCOMP} ${HF_I} ${HF_L} -I.
+t = ${HFDIR}/mobilechan/tapwgts
+m = ${HFDIR}/misc
+l = ${HFDIR}/cmdline
+
+JTC_MODEL = 1
+MACRO_MODEL = 2
+DEBUG_MODEL = 3
+
+MISCOFILES =$(m)/cgauss48.o $(m)/gauss48.o \
+	$(m)/seed.o $(m)/pathfile.o
+
+TAPOFILES = $(t)/chfchan.o $(t)/ctapwgts.o $(t)/doppler.o $(t)/iir32.o \
+	$(t)/qphas.o $(t)/weight.o $(t)/four1.o $(t)/qsc.o $(t)/q1.o \
+	$(t)/expweight.o 
+
+JTCLOCALOFILES = jtcmobilechan.o buffer.o cancoeff.o tapdelay.o fade.o \
+	fracdelay.o fractapdelay.o 
+
+MACROLOCALOFILES = macromobilechan.o buffer.o cancoeff.o tapdelay.o fade.o \
+	fracdelay.o fractapdelay.o 
+
+JTCOFILES =  $(JTCLOCALOFILES) $(TAPOFILES) $(MISCOFILES)
+
+MACROOFILES =  $(MACROLOCALOFILES) $(TAPOFILES) $(MISCOFILES)
+
+all: mobilechan macromobilechan
+
+mobilechan: $(JTCLOCALOFILES) tap_obj misc_obj lib_a
+	$(CC) $(JTCOFILES) ${HFLIBS} -o $@@ -lm
+
+macromobilechan: $(MACROLOCALOFILES) tap_obj misc_obj lib_a
+	$(CC) $(MACROOFILES) ${HFLIBS} -o $@@ -lm
+
+buffer.o: mobilechan.h $(m)/complex.h
+
+cancoeff.o: mobilechan.h
+
+jtcmobilechan.o: mobilechan.c mobilechan.h $(l)/Cmdline.h $(m)/complex.h $(m)/seed.h \
+	$(m)/pathfile.h fracdly.h
+	$(CC) -c -DMODEL=${JTC_MODEL} mobilechan.c -o jtcmobilechan.o
+
+macromobilechan.o: mobilechan.c mobilechan.h $(l)/Cmdline.h $(m)/complex.h $(m)/seed.h \
+	$(m)/pathfile.h fracdly.h
+	$(CC) -c -DMODEL=${MACRO_MODEL} mobilechan.c -o macromobilechan.o
+
+tapdelay.o: mobilechan.h $(m)/complex.h
+
+fractapdelay.o: fractapdelay.c mobilechan.h fracdly.h $(m)/complex.h 
+
+fracdelay.o: fracdelay.c mobilechan.h fracdly.h $(m)/complex.h
+
+fade.o: mobilechan.h
+
+tap_obj:
+	cd $(t); make
+
+misc_obj:
+	cd $(m); make
+
+lib_a:
+	cd $(l); make
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+@
+
+
+2.2
+log
+@added copyright notice
+@
+text
+@d2 4
+a5 2
+# $Id$
+# $Log$
+d7 1
+d13 4
+d21 8
+a28 1
+	$(t)/qphas.o $(t)/weight.o $(t)/four1.o $(t)/qsc.o $(t)/q1.o
+d30 1
+a30 1
+LOCALOFILES = mobilechan.o buffer.o cancoeff.o tapdelay.o fade.o
+d32 1
+a32 1
+OFILES = $(LOCALOFILES) $(TAPOFILES) $(MISCOFILES)
+d34 1
+a34 2
+mobilechan: $(LOCALOFILES) tap_obj misc_obj lib_a
+	$(CC) $(OFILES) ${HFLIBS} -o $@@ -lm
+d36 6
+d46 7
+a52 2
+mobilechan.o: mobilechan.h $(l)/Cmdline.h $(m)/complex.h $(m)/seed.h \
+	$(m)/pathfile.h
+d55 4
+@

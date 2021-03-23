@@ -1,0 +1,64 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	94.07.25.18.30.41;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@routine to prepend pathname to a file.
+@
+
+
+2.2
+log
+@added Copyright notice.
+@
+text
+@/* prepend the ~/hf path to a file name
+ * r.coutts
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id$
+   $Log$
+
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+#define	NCHARS	150			/* # chars in elongated file name */
+
+static char rcsid[] = "$Id$";
+
+char *PathFile(char *file) {
+	char	*envpath;		/* path to enviromental variable */
+	char	*pathAndFile;	/* entire path and file name */
+
+	/* get memory */
+	pathAndFile = (char *)malloc(NCHARS);
+	/* get path to simulation */
+	if((envpath = getenv("HFDIR")) == (char *)NULL) {
+		printf("Error from GetFileName:  must 'setenv HFDIR ~/hf'\n");
+		exit(1);
+	}
+	strcpy(pathAndFile, envpath);/* add path to file name */
+	if(pathAndFile[strlen(pathAndFile)-1] != '/') strcat(pathAndFile, "/");
+	strcat(pathAndFile, file);
+	/* check for over-write */
+	if(strlen(pathAndFile) > NCHARS) {
+		printf("Error from PathFile: File name '%s' longer than %d "
+			"characters\n" , pathAndFile, NCHARS);
+		exit(1);
+	}
+	return pathAndFile;
+}
+@

@@ -1,0 +1,57 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -vs Vehicle_Speed (m/s) (float) 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -tl Tap_weight_threshold(dB) (float) optional 
+#      -w warmup_filters(no warmup files) (int flag) optional 
+#      -wld load_filter_warmup_files (int flag) optional 
+#      -wgen generate_filter_warmup_files (int flag) optional 
+#      -norm Number_of_Discrete_Paths (int) optional (default = 1) 
+#      -nd Fractional_Dop_Shft_([-1,1]) (float array) 
+#      -nx Rel_Discrete_Path_Gain_(dB) (float array) optional (default = -1.14) 
+#      -nb Discrete_Bulk_Delay_(nS) (float array) optional (default = 0) 
+#      -dist Number_of_Scatter_Paths (int) optional (default = 1) 
+#      -ds Scatter_Path_Sample_Rate (float) 
+#      -dx Rel_Scatter_Path_Gain_(dB) (float array) 
+#      -db Scatter_Bulk_Delay_(nS) (float array) 
+#      -datadopp data (int flag) optional 
+#      -flat flat (int flag) optional 
+#      -classic classic (int flag) optional 
+#      -dopfile Dop_Pow_Spec_File (file) 
+#      -datapow data (int flag) optional 
+#      -exppow exp (int flag) optional 
+#      -powfile Del_Pow_Spec_File (file) 
+#      -et Scatter_Exp_Tau(ns) (float array) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+${SIMDIR}/MobileChan/PropChan/LandMobile/cellular/mixedmod/mixedchan  \
+ -i         Inputfile.dat \
+ -s         SampleRate \
+ -o         Outputfile.dat \
+ -vs        TerminalSpeed \
+ -fc        CarrierFrequency \
+ -w         \
+ -norm      1 \
+ -nd        DopShft1 \
+ -nx        0 \
+ -nb        90 \
+ -dist      1 \
+ -ds        10 \
+ -dx        -8.95 \
+ -db        0 \
+ -flat      \
+ -exppow    \
+ -et        40 \
+ -Script_File $0 \
+ $*

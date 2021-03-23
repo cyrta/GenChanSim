@@ -1,0 +1,51 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.19.34.01;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@makefile for signal generator.
+@
+
+
+2.2
+log
+@added copyright notice.
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_I} ${HF_L}
+m = ${HFDIR}/misc
+l = ${HFDIR}/cmdline
+
+MISCOFILES = $(m)/pathfile.o $(m)/cgauss48.o
+
+LOCALOFILES = signal.o
+
+OFILES = $(LOCALOFILES) $(MISCOFILES)
+
+signal: $(LOCALOFILES) misc_obj lib_a
+	$(CC) $(OFILES) ${HFLIBS} -o $@@ -lm
+
+signal.o: $(l)/Cmdline.h $(m)/complex.h $(m)/pathfile.h
+
+misc_obj:
+	cd $(m); make
+
+lib_a:
+	cd $(l); make
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+@

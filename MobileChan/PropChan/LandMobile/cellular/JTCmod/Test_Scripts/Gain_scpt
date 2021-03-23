@@ -1,0 +1,34 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -i Input_File (file) 
+#      -s Sample_Rate_(MHz) (float) 
+#      -o Output_File (file) 
+#      -vs Max_Vehicle_Speed (m/s) (float) 
+#      -fc Carrier Frequency (MHz) (float) 
+#      -flat flat_power_spectrum
+#      -jakes jakes_power_spectrum
+#      -dist Number_of_JTC_Paths (int) optional (default = 5) 
+#      -dx Relative_Path_Gain_(dB) (float array) 
+#      -db Bulk_Delay_(nS) (float array) 
+#      -seed R.N.G._Seed (int) optional 
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+/hfcomm3/hf/mobilechan/mobilechan  \
+ -i         testImpTrn.dat \
+ -s         0.016384 \
+ -o         ImpTrnResp.dat \
+ -vs        96 \
+ -fc        800 \
+ -classic \
+ -dist      5 \
+ -dx        0 -3 12 -6 -6 \
+ -db        0 1.56e+06 3.12e+06 4.68e+06 6.24e+06 \
+ -Script_File $0 \
+ $*

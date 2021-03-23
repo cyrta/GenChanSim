@@ -1,0 +1,29 @@
+CC = ${CCOMP} -I${SIMDIR}/misc -I.
+m = ${SIMDIR}/misc
+CFLAGS =
+
+MISCOFILES =$(m)/cgauss48.o $(m)/gauss48.o \
+	$(m)/seed.o
+
+LOCALOFILES = cmain.o clognorm.o
+
+OFILES =  $(LOCALOFILES) $(MISCOFILES)
+
+all: cmain
+
+cmain: $(LOCALOFILES) misc_obj
+	$(CC) $(OFILES) -o $@ -lm
+
+clognorm.o: $(m)/complex.h
+
+cmain.o: cmain.c $(m)/complex.h $(m)/seed.h
+
+misc_obj:
+	cd $(m); make
+
+*.c*.o:
+	$(CC) -c *.c -o *.o
+
+
+
+

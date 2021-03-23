@@ -1,0 +1,71 @@
+head	3.0;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+3.0
+date	94.08.30.18.51.48;	author jjb;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	94.07.25.18.57.02;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@IIR filter fading include file
+@
+
+
+3.0
+log
+@updated prototype for interp64 to include extra arrays for
+storage of previous states.
+@
+text
+@/* IIR filter fading header file
+
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id: ifde.h,v 2.2 1994/07/25 18:57:02 jjb Exp jjb $
+   $Log: ifde.h,v $
+ * Revision 2.2  1994/07/25  18:57:02  jjb
+ * added copyright notice
+ *
+
+ */
+
+#ifndef _IIRFADE_H
+#define _IIRFADE_H
+
+
+/* functions */
+extern char *getenv(char *);
+void readfilterfile(char [], float [], int);
+extern void interp(fcomplex [], int, int, int);
+extern void getfiltbank(char [], FILTER *);
+extern void zerofilter(fcomplex [], int, int, float [], int, fcomplex []);
+extern void linearinterp(fcomplex [], int, int, int);
+extern void interp64(fcomplex [], int, int, int, fcomplex [], fcomplex [], fcomplex [], fcomplex []);
+
+#endif /* _IIRFADE_H */
+@
+
+
+2.2
+log
+@added copyright notice
+@
+text
+@d5 5
+a9 2
+   $Id$
+   $Log$
+d24 1
+a24 1
+extern void interp64(fcomplex [], int, int, int, fcomplex []);
+@

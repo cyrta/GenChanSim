@@ -1,0 +1,30 @@
+#
+# script file written by Cmdline
+#
+# list of available args:
+#      -f Sample_Rate_(MHz) (float) optional (default = 0.0164) 
+#      -t Time_(seconds) (float) 
+#      -o Output_File (file) 
+#      -i Impulse (int flag) optional 
+#      -s Pulse (int flag) optional 
+#      -g Gaussian (int flag) optional 
+#      -w Sine_Wave (int flag) optional 
+#      -ones Ones (I/Q=1) (int flag) optional 
+#      -l Pulse_Length_(uS) (float) 
+#      -p Period_(mS) (float) optional 
+#      -freq Frequency(kHz)
+#      -win (int flag) optional 
+#
+# '$*' at the bottom of the file allows for additional
+# command-line arguments to be added when running this
+# script (e.g., the '-win' flag to invoke the window)
+#
+
+/hfcomm3/hf/signal/signal  \
+ -f         0.016384 \
+ -t         5 \
+ -o         testImpTrn.dat \
+ -i         \
+ -p         7.8125 \
+ -Script_File $0 \
+ $*

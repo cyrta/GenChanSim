@@ -1,0 +1,51 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.19.12.54;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@make file for gaussian noise generator.
+@
+
+
+2.2
+log
+@Added copyright notice.
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_I} ${HF_L}
+m = ${HFDIR}/misc
+l = ${HFDIR}/cmdline
+
+MISCOFILES =  $(m)/cgauss48.o $(m)/pathfile.o
+
+LOCALOFILES = noise.o
+
+OFILES = $(LOCALOFILES) $(MISCOFILES)
+
+noise: $(LOCALOFILES) misc_obj lib_a
+	$(CC) $(OFILES) ${HFLIBS} -o $@@
+
+noise.o: $(l)/Cmdline.h $(m)/complex.h $(m)/pathfile.h
+
+misc_obj:
+	cd $(m); make
+
+lib_a:
+	cd $(l); make
+
+*.c*.o: 
+	$(CC) -c *.c -o *.o
+@

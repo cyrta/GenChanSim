@@ -1,0 +1,83 @@
+head	3.0;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+3.0
+date	94.08.30.18.43.12;	author jjb;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	94.07.25.18.47.02;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@thin screen phase model function.
+@
+
+
+3.0
+log
+@updated rev number.
+@
+text
+@/*---------------------------------------------------------------------------*/
+/* qsc.c - thin screen phase model function                                  */
+/* qsc(psi,c)                                                                */
+/* psi is relative delay                                                     */
+/* c is the intensity parameter for thin screen phase model                  */
+/*                                                                           */
+/*---------------------------------------------------------------------------*/
+/*                                                                           */
+/*
+ 
+   copyright (c) 1994 The MITRE Corporation Bedford, MA
+
+   $Id: qsc.c,v 2.2 1994/07/25 18:47:02 jjb Exp jjb $
+   $Log: qsc.c,v $
+ * Revision 2.2  1994/07/25  18:47:02  jjb
+ * added copyright notice
+ *
+
+*/
+
+#include <math.h>
+
+static char rcsid[] = "$Id: qsc.c,v 2.2 1994/07/25 18:47:02 jjb Exp jjb $";
+
+float qsc(float psi, float c) {
+  float w, cp, term1, term2, term3, term4;
+  extern double q1(double x);
+
+  cp = sqrt(1+c*c);
+  term1 = 2*cp*exp(c*c/2);
+  term2 = exp(-2*cp*psi);
+  term3 = c - (2/c)*cp*psi;
+  term4 = q1(term3);
+  w = term1*term2*term4;
+  return(w);
+}
+@
+
+
+2.2
+log
+@added copyright notice
+@
+text
+@d10 1
+a10 1
+
+d13 5
+a17 2
+   $Id$
+   $Log$
+d23 1
+a23 1
+static char rcsid[] = "$Id$";
+@

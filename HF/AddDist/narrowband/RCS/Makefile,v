@@ -1,0 +1,59 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	94.07.25.19.06.52;	author jjb;	state Exp;
+branches;
+next	;
+
+
+desc
+@make file for narrowband interference simulator.
+@
+
+
+2.2
+log
+@added copyright notice
+@
+text
+@#
+# $Id$
+# $Log$
+#
+CC = ${CCOMP} ${HF_I} ${HF_L} -I.
+m = ${HFDIR}/misc
+l = ${HFDIR}/cmdline
+
+LOCALOFILES = narrowband.o narfunc.o iirfade.o iir.o
+
+MISCOFILES = $(m)/cgauss48.o $(m)/rand.o $(m)/complex.o $(m)/fwritebuffer.o \
+	$(m)/seed.o $(m)/pathfile.o
+
+OFILES = $(LOCALOFILES) $(MISCOFILES)
+
+narrowband: $(LOCALOFILES) narrowband.h misc_obj lib_a
+	$(CC) $(OFILES) ${HFLIBS} -lm -o $@@
+
+narrowband.o: narrowband.h iirfade.h $(l)/Cmdline.h $(m)/complex.h \
+	$(m)/seed.h $(m)/pathfile.h
+
+narfunc.o: narrowband.h $(m)/complex.h $(m)/fwritebuffer.h
+
+iirfade.o: narrowband.h iirfade.h $(m)/complex.h
+
+iir.o: filter.h $(m)/complex.h
+
+misc_obj:
+	cd $(m); make
+
+lib_a:
+	cd $(l); make
+
+*.c*.o: 
+	$(CC) -c *.c -o *.o
+@

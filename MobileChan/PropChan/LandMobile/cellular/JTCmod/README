@@ -1,0 +1,55 @@
+One enhancement made to this software was to add the ability for a
+data file input for IIR filter coefficients for the Doppler power
+spectrum.  Thus, the knowledgeable user can come up with any scatter
+path model desired.  This feature is mainly intended so that if
+another power spectrum model is formed by someone like Phil Bello, the
+program is flexible to handle it without having to rewrite and
+recompile it.  Matlab is easy to use to generate IIR filter
+coefficients.  For the Doppler power spectrum, the IIR filter
+coefficents should be generated and stored as instructed here:
+
+The program iir32.c in the tapwgts directory implements a 32nd order
+IIR filter for the fading spectrum of the Mobile Radio Channel.  The
+tap weight coefficients are read in as doubles.  They are expected to
+be stored in the "/JTCmod/tapwgts" directory.  The first coefficient
+is the "amplitude" (gain factor) which is tap b(1) as generated in
+Matlab.  a(1)=1 in Matlab is not written.  The remainder of the
+coefficients are stored in interleaved order: a(2), b(2), a(3), b(3)
+.... where the indices indicated here are those used by Matlab.  Thus,
+a new fading spectrum can easily be defined by using the 'yulewalk'
+function (or any other IIR filter design function) in Matlab and
+storing the coefficients in the file in interleaved format and double
+precision.
+
+Assuming the coefficients are stored in vectors a and b in Matlab,
+this is one way to properly write them to the file:
+  
+*   c=zeros(1,65);
+*   c(1)=b(1);
+*   c(2:2:length(c))=a(2:1:length(a));
+*   c(3:2:length(c))=b(2:1:length(b));
+*   fid=fopen('dopp_filt.coef','w')
+*   fwrite(fid,c,'double')
+*   
+
+If data entry is selected for the Doppler power spectrum, the filename
+is entered as a program parameter.
+
+____________________________
+Before MIT Lincoln Laboratory started to modify the
+mobilechan/macromobilechan software, only one makefile existed.  It
+was found that modifying someone else's software to do something for
+which it was never intended was becoming so burdensome and potentially
+dangerous, that it was decided to leave the old mobilechan intact and
+modify separate source files for the enhancements/additions.
+
+In this version, the directory structure has changed so that the old
+mobilechan/mobilechan program is the current JTCchan program in this
+JTCmod directory.  The old mobilechan/macromobilechan program with new
+enhancements is in a parallel directory called mixedmod/mixedchan.
+Now there are separate make files for the two cellular channel models.
+
+Cathy Keller
+Linda Riehl
+MIT Lincoln Laboratory
+January 1996
