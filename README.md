@@ -74,7 +74,7 @@ mere subset of the information that is contained in [4].
 
     Below is a directory tree diagram of the current software package,
 followed by a brief explanation of the role of each directory. 
-
+```
   GenChanSim
   `----HF (hfc)
   |    `----AddDist
@@ -127,6 +127,7 @@ followed by a brief explanation of the role of each directory.
   *   == empty directory.
 
 --------------------------------------------------------------------
+
 
 directory   description
 ---------   ----------
@@ -234,12 +235,14 @@ GenChanSim  Base directory containing all the required software (excluding
   xapplres    Contains resource files for the motif interface.
               'cmdline' is the default resource file.
 
+```
+
     A brief list and description is given below on executable software
 provided.  Many executables are given the same name as the directory
 in which they reside.  For information on software parameters, please
 refer to [4].  A 'usage' line for a program can be obtained at the
 UNIX prompt simply typing the name of the module, e.g.,
-
+```
 % fileconv
 
 returns 
@@ -321,6 +324,7 @@ nlosbelrfblk	non-LOS below the roof ( 1st order road guided and
 nlosbelrfint	non-LOS below the roof ( 1st order road guided and 
 		COST231-Walfisch-Ikegami ) with Tx (base) at center
 	        of an intersection.
+```
 
 RUNNING SOFTWARE
 
